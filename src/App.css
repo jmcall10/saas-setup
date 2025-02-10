@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 }
+
+.mycontainer {
+  width:100%;
+  overflow:auto;
+}
+.mycontainer div {
+  width:33%;  
+  float:left;
+}

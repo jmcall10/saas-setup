@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background: linear-gradient(180deg, rgb(117, 81, 194), rgb(255, 255, 255));
+  background: linear-gradient(180deg, rgb(226, 226, 226), rgb(255, 253, 153));
   display: flex;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   height: 100vh;
@@ -62,4 +62,26 @@ li:hover {
 a {
   font-weight: 800;
   text-decoration: none;
+}
+
+@font-face {
+  font-family: 'MyFont';
+  src: url('/fonts/bungee-shade-latin-400-normal.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.my-custom-font {
+  font-family: 'MyFont', sans-serif;
+}
+
+
+div.mycontainer {
+  width:100%;
+  overflow:auto;
+}
+div.mycontainer div {
+  width:33%;  
+  float:left;
 }

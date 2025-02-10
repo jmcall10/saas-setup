@@ -1,48 +1,35 @@
-import { useEffect, useState } from "react";
-import { useAuthenticator } from '@aws-amplify/ui-react';
-import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
-
-const client = generateClient<Schema>();
+import { Routes, Route } from "react-router-dom";
+import { Authenticator } from "@aws-amplify/ui-react";
+import Layout from "./components/Layout"; // Import Layout
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Pricing from "./pages/Pricing";
 
 function App() {
-  const { user, signOut } = useAuthenticator();
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
-    
-  function deleteTodo(id: string) {
-    client.models.Todo.delete({ id })
-  }
-
-  useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }, []);
-
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
-
   return (
-    <main>
-      <h1>{user?.signInDetails?.loginId}'s todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (<li 
-          onClick={() => deleteTodo(todo.id)}
-          key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <button onClick={signOut}>Sign out</button>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
-      </div>
-    </main>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/pricing" element={<Pricing />} />
+
+        {/* Protected Page (Authenticator Required) */}
+        <Route
+          path="/protected"
+          element={
+            <Authenticator>
+              {({ signOut, user }) => (
+                <div>
+                  <h1>Protected Page</h1>
+                  <p>Welcome, {user?.username}!</p>
+                  <button onClick={signOut}>Sign Out</button>
+                </div>
+              )}
+            </Authenticator>
+          }
+        />
+      </Routes>
+    </Layout>
   );
 }
 
