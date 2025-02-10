@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CSSProperties } from "react";
+
 
 const styles: { [key: string]: React.CSSProperties } = {
     navbar: {
