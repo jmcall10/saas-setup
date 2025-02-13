@@ -1,45 +1,21 @@
 import { Link } from "react-router-dom";
-
-
-const styles: { [key: string]: React.CSSProperties } = {
-    navbar: {
-      backgroundColor: "#93C47D",
-      padding: "22px",
-      display: "flex",
-      justifyContent: "center",
-      gap: "80px",
-      position: "fixed", // Keeps navbar fixed at the top
-      top: 0,
-      left: 0,
-      width: "100%",
-      zIndex: 1000,
-    },
-    link: {
-      color: "black",
-      textDecoration: "none",
-      fontSize: "26px",
-    },
-    content: {
-      padding: "20px",
-      textAlign: "center",
-      marginTop: "60px", // Prevents content from being hidden under navbar
-    },
-  };
-  
+import "./Layout.css"; // ✅ Import CSS file
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div>
-      {/* Navigation Bar */}
-      <nav style={styles.navbar}>
-        <Link to="/" style={styles.link}> Home </Link>
-        <Link to="/about" style={styles.link}> About </Link>
-        <Link to="/pricing" style={styles.link}> Pricing </Link>
-        <Link to="/protected" style={styles.link}> Login </Link>
+      <nav className="navbar">
+        <div className="site-name">Centipawn Lexicon</div>
+        <div className="links-container">
+        <Link to="/" className="nav-link">Skill Corner</Link>
+          <Link to="/about" className="nav-link">vs. Engines</Link>
+          <Link to="/pricing" className="nav-link">My Dashboard</Link>
+          <Link to="/protected" className="nav-link">Login</Link>
+        </div>
       </nav>
-
-      {/* Page Content */}
-      <div style={styles.content}>{children}</div>
+      <div style={{ padding: "20px", textAlign: "center", marginTop: "80px" }}>
+        {children}
+      </div>
     </div>
   );
 }

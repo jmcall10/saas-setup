@@ -1,0 +1,60 @@
+.navbar {
+  background-color: transparent;
+  padding: 22px;
+  display: flex;
+  align-items: top;
+  justify-content: flex-start;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding-left: 30px;
+}
+
+.site-name {
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+  margin-right: 40px;
+}
+
+.links-container {
+  display: flex;
+  gap: 40px;
+}
+
+/* ✅ Default link styles */
+.nav-link {
+  color: black;
+  text-decoration: none;
+  font-size: 22px;
+  padding: 10px 15px;
+}
+
+/* ✅ Instant hot pink background on hover */
+.nav-link:hover {
+  background-color: rgb(181, 92, 223);
+  color: white; /* Optional: Change text color */
+  border-radius: 5px; /* Optional: Rounded corners */
+  transition: none; /* ✅ Makes the background change instant */
+  transform: scale(1.1); /* ✅ Makes link grow slightly */
+  font-size: 24px; /* ✅ Makes text slightly bigger */
+  padding: 6px 10px; /* ✅ Slightly increase padding */
+}
+
+/* ✅ Make the second link (My Dashboard) highlight bright blue */
+.nav-link:nth-child(2):hover {
+  background-color: rgb(0, 124, 240); /* ✅ Bright blue for second link */
+  color: white;
+}
+
+.nav-link:nth-child(3):hover {
+  background-color: rgb(91, 156, 53); /* ✅ Bright blue for second link */
+  color: white;
+}
+
+.nav-link:nth-child(4):hover {
+  background-color: rgb(238, 214, 0); /* ✅ Bright blue for second link */
+  color: white;
+}

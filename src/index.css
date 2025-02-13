@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background: linear-gradient(180deg, rgb(226, 226, 226), rgb(255, 253, 153));
+  background: linear-gradient(180deg, rgb(216, 216, 216), rgb(235, 235, 235));
   display: flex;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   height: 100vh;
