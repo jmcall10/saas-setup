@@ -58,3 +58,25 @@
   background-color: rgb(238, 214, 0); /* ✅ Bright blue for second link */
   color: white;
 }
+
+/* ✅ Make the navbar stack links vertically on small screens */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .links-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .nav-link {
+    font-size: 20px; /* ✅ Slightly smaller text on mobile */
+    padding: 8px 15px;
+  }
+}
