@@ -1,9 +1,9 @@
 .navbar {
-  background-color: transparent;
+  background-color: transparent; /* ✅ Transparent on desktop */
   padding: 22px;
   display: flex;
-  align-items: center; /* ✅ Ensures alignment on desktop */
-  justify-content: space-between; /* ✅ Keeps site name and links aligned */
+  align-items: center;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
@@ -16,7 +16,7 @@
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 20px; /* ✅ Keeps spacing between site name and hamburger */
+  gap: 20px;
 }
 
 .site-name {
@@ -41,8 +41,7 @@
 /* ✅ Mobile styles */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-    align-items: center;
+    background-color: rgba(147, 196, 125, 0.95); /* ✅ Light green with slight transparency */
     padding: 15px;
   }
 
@@ -56,6 +55,7 @@
     align-items: center;
     width: 100%;
     padding: 10px 0;
+    background-color: rgba(147, 196, 125, 1); /* ✅ Solid background for dropdown */
   }
 
   /* ✅ Show menu when open */
@@ -64,7 +64,8 @@
   }
 
   .nav-link {
-    font-size: 20px; /* ✅ Slightly smaller text on mobile */
-    padding: 8px 15px;
+    font-size: 20px;
+    padding: 10px 15px;
+    color: black;
   }
 }
