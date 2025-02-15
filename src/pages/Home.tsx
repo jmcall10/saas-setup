@@ -23,6 +23,6 @@ Join a community of data-driven players and start unlocking the insights hiding 
 const styles: { container: CSSProperties } = {
   container: {
     textAlign: "center",
-    marginTop: "-200px", // Ensure valid CSS units (e.g., '50px', '2rem')
+    marginTop: "50px", // Ensure valid CSS units (e.g., '50px', '2rem')
   },
 };
