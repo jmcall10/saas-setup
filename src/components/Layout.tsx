@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Layout.css"; // ✅ Import CSS file
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const [menuOpen, setMenuOpen] = useState(false); // ✅ State for mobile menu
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // ✅ Close the menu when a link is clicked
   const closeMenu = () => setMenuOpen(false);
@@ -15,7 +15,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="site-name">Centipawn Lexicon</div>
 
           {/* ✅ Hamburger menu (only visible on mobile) */}
-          <div className="hamburger-menu" onClick={() => setMenuOpen(!menuOpen)}>
+          <div
+            className={`hamburger-menu ${menuOpen ? "open" : ""}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
             ☰
           </div>
         </div>

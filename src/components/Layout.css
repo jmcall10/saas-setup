@@ -1,5 +1,5 @@
 .navbar {
-  background-color: transparent; /* ✅ Transparent on desktop */
+  background-color: transparent; /* ✅ Transparent navbar */
   padding: 22px;
   display: flex;
   align-items: center;
@@ -41,7 +41,6 @@
 /* ✅ Mobile styles */
 @media (max-width: 768px) {
   .navbar {
-    background-color: rgba(147, 196, 125, 0.95); /* ✅ Light green with slight transparency */
     padding: 15px;
   }
 
@@ -49,18 +48,27 @@
     display: block; /* ✅ Show hamburger menu only on mobile */
   }
 
+  /* ✅ Hide menu initially */
   .links-container {
-    display: none; /* ✅ Hide menu initially */
+    display: none;
     flex-direction: column;
     align-items: center;
     width: 100%;
     padding: 10px 0;
-    background-color: rgba(147, 196, 125, 1); /* ✅ Solid background for dropdown */
+    background-color: rgba(147, 196, 125, 1); /* ✅ Solid green only for dropdown */
+    position: absolute;
+    top: 60px;
+    left: 0;
   }
 
   /* ✅ Show menu when open */
   .links-container.open {
     display: flex;
+  }
+
+  /* ✅ Hide the hamburger menu when dropdown is open */
+  .hamburger-menu.open {
+    display: none;
   }
 
   .nav-link {
