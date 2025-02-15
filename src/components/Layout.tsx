@@ -5,6 +5,9 @@ import "./Layout.css"; // ✅ Import CSS file
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false); // ✅ State for mobile menu
 
+  // ✅ Close the menu when a link is clicked
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <div>
       <nav className="navbar">
@@ -19,10 +22,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         {/* ✅ Navigation links (always visible on desktop, collapsible on mobile) */}
         <div className={`links-container ${menuOpen ? "open" : ""}`}>
-          <Link to="/" className="nav-link">Control Room</Link>
-          <Link to="/about" className="nav-link">Data Vault</Link>
-          <Link to="/pricing" className="nav-link">Engine Bay</Link>
-          <Link to="/protected" className="nav-link">Login</Link>
+          <Link to="/" className="nav-link" onClick={closeMenu}>Control Room</Link>
+          <Link to="/about" className="nav-link" onClick={closeMenu}>Data Vault</Link>
+          <Link to="/pricing" className="nav-link" onClick={closeMenu}>Engine Bay</Link>
+          <Link to="/protected" className="nav-link" onClick={closeMenu}>Login</Link>
         </div>
       </nav>
 
