@@ -21,8 +21,9 @@ function App() {
               {({ signOut, user }) => (
                 <div>
                   <h1>Protected Page</h1>
-                  <p>Welcome, {user?.username}!</p>
+                  <p>Welcome, {user?.userId}!</p>
                   <button onClick={signOut}>Sign Out</button>
+                  <button onClick={signOut}>Upload Games</button>
                 </div>
               )}
             </Authenticator>

@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-saassetup-dev-89f43-authRole",
+      "UnauthRoleArn": "arn:aws:iam::058264348644:role/amplify-saassetup-dev-89f43-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::058264348644:role/amplify-saassetup-dev-89f43-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-saassetup-dev-89f43-deployment",
+      "UnauthRoleName": "amplify-saassetup-dev-89f43-unauthRole",
+      "StackName": "amplify-saassetup-dev-89f43",
+      "StackId": "arn:aws:cloudformation:us-east-2:058264348644:stack/amplify-saassetup-dev-89f43/e0120050-ec11-11ef-a79c-0ad12174b465",
+      "AmplifyAppId": "d3o2ivlnxoy66q"
+    },
+    "categories": {
+      "api": {
+        "saassetup": {}
+      },
+      "auth": {
+        "saassetup693b13aa": {}
+      }
+    }
+  }
+}
