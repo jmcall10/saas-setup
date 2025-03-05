@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div>
       <nav className="navbar">
         <div className="navbar-left">
-          <div className="site-name">Centipawn Lexicon</div>
+          <div className="site-name">Playbook Pro</div>
 
           {/* ✅ Hamburger menu (only visible on mobile) */}
           <div
@@ -25,9 +25,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         {/* ✅ Navigation links (always visible on desktop, collapsible on mobile) */}
         <div className={`links-container ${menuOpen ? "open" : ""}`}>
-          <Link to="/" className="nav-link" onClick={closeMenu}>Control Room</Link>
-          <Link to="/about" className="nav-link" onClick={closeMenu}>Data Vault</Link>
-          <Link to="/pricing" className="nav-link" onClick={closeMenu}>Engine Bay</Link>
+          <Link to="/" className="nav-link" onClick={closeMenu}>My Roster</Link>
+          <Link to="/about" className="nav-link" onClick={closeMenu}>Playbook</Link>
+          <Link to="/pricing" className="nav-link" onClick={closeMenu}>Schedule</Link>
           <Link to="/protected" className="nav-link" onClick={closeMenu}>Login</Link>
         </div>
       </nav>

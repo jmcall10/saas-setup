@@ -5,21 +5,21 @@ export default function Pricing() {
     <div className="mycontainer">
 
         <div style={styles.container}>
-          <h2>London</h2>
-          <p>London is the capital city of England.</p>
-          <p>London has over 9 million inhabitants.</p>
+          <h2>Free</h2>
+          <p>Create and manage your roster</p>
+          <p>Supports 1 team up to 55 players</p>
         </div>
         
         <div style={styles.container}>
-          <h2>Oslo</h2>
-          <p>Oslo is the capital city of Norway.</p>
-          <p>Oslo has over 700,000 inhabitants.</p>
+          <h2>Basic</h2>
+          <p>Create and manage your roster</p>
+          <p>Create and distribute playbooks</p>
         </div>
         
         <div style={styles.container}>
-          <h2>Rome</h2>
-          <p>Rome is the capital city of Italy.</p>
-          <p>Rome has over 4 million inhabitants.</p>
+          <h2>Pro</h2>
+          <p>Create and manage your roster</p>
+          <p>Distribute unlimited plays</p>
         </div>
       
     </div>
@@ -32,7 +32,9 @@ export default function Pricing() {
   const styles: { container: CSSProperties } = {
     container: {
       textAlign: "center",
-      marginTop: "50px", // Ensure valid CSS units (e.g., '50px', '2rem')
+      marginTop: "5px", // Ensure valid CSS units (e.g., '50px', '2rem')
+      marginLeft: "5px",  // ✅ Adds space between each container
+      marginRight: "5px",
       backgroundColor: "#93C47D",
       padding: "20px"
     },

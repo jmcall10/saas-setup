@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background: linear-gradient(180deg, rgb(216, 216, 216), rgb(235, 235, 235));
+  background: linear-gradient(180deg, rgb(218, 238, 181), rgb(235, 235, 235));
   display: flex;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   height: 100vh;
@@ -82,6 +82,6 @@ div.mycontainer {
   overflow:auto;
 }
 div.mycontainer div {
-  width:33%;  
+  width:32%;  
   float:left;
 }
