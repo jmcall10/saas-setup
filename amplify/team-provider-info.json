@@ -16,7 +16,8 @@
         "saassetup": {}
       },
       "auth": {
-        "saassetup693b13aa": {}
+        "saassetup693b13aa": {},
+        "userPoolGroups": {}
       }
     }
   }
