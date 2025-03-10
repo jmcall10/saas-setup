@@ -16,7 +16,8 @@ export default function About() {
   const [startButtonColor, setStartButtonColor] = useState("black");
   const [endButtonColor, setEndButtonColor] = useState("black");
   const [playButtonColor, setPlayButtonColor] = useState("gray");
-
+  const [keyframes, setKeyframes] = useState<{ [key: string]: { left: number; top: number }[] }>({});
+  const [playDuration, setPlayDuration] = useState(2000);
 
   const shapeOptions = ["Circle", "Square", "Triangle"];
   const colorOptions = ["blue", "red", "lime", "yellow", "purple", "black"];
@@ -155,36 +156,89 @@ export default function About() {
   };
   
 
+  const addKeyframe = () => {
+    if (!canvas || !selectedPlayer) return;
+    if (!startSaved || !endSaved) {
+      console.warn("⚠ Keyframes can only be added after setting start and end positions.");
+      return;
+    }
+  
+    const player = playerRefs.current[selectedPlayer];
+    if (!player) return;
+  
+    const { left, top } = player;
+    setKeyframes((prev) => {
+      const currentKeyframes = prev[selectedPlayer] || [];
+  
+      // ✅ Prevent adding a keyframe if it's identical to start or end positions
+      if (
+        (left === startPositions[selectedPlayer]?.left && top === startPositions[selectedPlayer]?.top) ||
+        (left === endPositions[selectedPlayer]?.left && top === endPositions[selectedPlayer]?.top)
+      ) {
+        console.warn("⚠ Cannot set a keyframe at the start or end position.");
+        return prev;
+      }
+  
+      return { ...prev, [selectedPlayer]: [...currentKeyframes, { left: left!, top: top! }] };
+    });
+  
+    console.log(`✅ Keyframe added for ${selectedPlayer}:`, { left, top });
+  };
+  
+
   // ✅ Animate players
   const playAnimation = () => {
     if (!canvas || !startSaved || !endSaved) return;
   
-    setPlayButtonColor("blue"); // ✅ Play button turns blue when clicked
-    setStartButtonColor("black"); // ✅ Reset start button color
-    setEndButtonColor("black"); // ✅ Reset end button color
+    setPlayButtonColor("blue");
+    setStartButtonColor("black");
+    setEndButtonColor("black");
   
     Object.entries(startPositions).forEach(([key, position]) => {
       playerRefs.current[key]?.set({ left: position.left, top: position.top });
     });
     canvas.renderAll();
   
-    Object.entries(endPositions).forEach(([key, position]) => {
-      playerRefs.current[key]?.animate(
-        { left: position.left, top: position.top },
-        {
-          duration: 2000,
-          onChange: canvas.renderAll.bind(canvas),
-          easing: fabric.util.ease.easeInOutQuad,
-          onComplete: () => setPlayButtonColor("gray"), // ✅ Reset play button to gray when animation ends
-        }
-      );
+    Object.entries(keyframes).forEach(([key, waypoints]) => {
+      const player = playerRefs.current[key];
+      if (!player) return;
+  
+      // ✅ Ensure start and end positions are included in the animation sequence
+      const fullPath = [
+        startPositions[key],  // Start position
+        ...waypoints,         // Keyframes
+        endPositions[key],    // End position
+      ].filter(Boolean); // Remove any undefined entries
+  
+      let delay = 0;
+      const stepDuration = playDuration / (fullPath.length - 1);
+  
+      fullPath.forEach((point, index) => {
+        setTimeout(() => {
+          player.animate(
+            { left: point.left, top: point.top },
+            {
+              duration: stepDuration,
+              onChange: canvas.renderAll.bind(canvas),
+              easing: fabric.util.ease.easeInOutQuad,
+              onComplete: () => {
+                if (index === fullPath.length - 1) {
+                  setPlayButtonColor("gray");
+                }
+              },
+            }
+          );
+        }, delay);
+        delay += stepDuration;
+      });
     });
   };
   
-
+  
+  
   return (
     <div>
-      <h1>About Us</h1>
+      <h1>Football Play</h1>
       <canvas ref={canvasRef} width={800} height={500} style={{ border: "2px solid black" }} />
       <br />
 
@@ -211,27 +265,55 @@ export default function About() {
         </div>
       )}
 
-<button 
+
+<button /* Set Start Positions Button*/
   onClick={setStart} 
-  style={{ backgroundColor: startButtonColor, color: "white" }}
+  style={{ backgroundColor: startButtonColor, color: "white" }} 
 >
   Set Start Positions
 </button>
 
-<button 
+<button /* Set End Positions Button*/
   onClick={setEnd} 
   style={{ backgroundColor: endButtonColor, color: "white" }}
 >
   Set End Positions
 </button>
 
-<button 
+<button /* Play Animation Button*/
   onClick={playAnimation} 
   disabled={!startSaved || !endSaved} 
   style={{ backgroundColor: playButtonColor, color: "white" }}
 >
   Play
 </button>
+
+<br/>
+
+<button onClick={addKeyframe} disabled={!selectedPlayer}>
+  Add Keyframe
+</button>
+
+<label> Play Duration (ms): </label>
+<input 
+  type="number" 
+  value={playDuration} 
+  onChange={(e) => setPlayDuration(Number(e.target.value))} 
+  min="500" 
+  max="10000" 
+  step="500" 
+/>
+
+<p><strong>Keyframe Timings (ms):</strong></p>
+<ul>
+  {Object.entries(keyframes).map(([key, frames]) => (
+    <li key={key}>
+      {key}: {frames.map((_, index) => `T+${(index + 1) * (playDuration / (frames.length + 1))}ms`).join(", ")}
+    </li>
+  ))}
+</ul>
+
+
 
     </div>
   );
